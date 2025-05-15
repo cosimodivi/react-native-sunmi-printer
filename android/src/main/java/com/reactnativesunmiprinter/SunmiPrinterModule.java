@@ -487,7 +487,7 @@ public void commitPrint(ReadableArray beansArray) {
     list.add(bean);
   }
 
-  SunmiPrinterService.getInstance().commitPrint(list.toArray(new TransBean[0]));
+  printerService.commitPrint(list.toArray(new TransBean[0]));
 }
   /**
    * 进入事务模式
