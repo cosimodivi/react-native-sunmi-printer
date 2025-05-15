@@ -475,7 +475,7 @@ public class SunmiPrinterModule extends ReactContextBaseJavaModule {
 
 
   @ReactMethod
-public void commitPrint(ReadableArray beansArray) {
+public void commitPrint(ReadableArray beansArray) throws RemoteException {
   List<TransBean> list = new ArrayList<>();
 
   for (int i = 0; i < beansArray.size(); i++) {
