@@ -25,6 +25,8 @@ import com.sunmi.peripheral.printer.SunmiPrinterService;
 import com.sunmi.peripheral.printer.TransBean;
 import com.sunmi.peripheral.printer.WoyouConsts;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @ReactModule(name = SunmiPrinterModule.NAME)
@@ -473,21 +475,20 @@ public class SunmiPrinterModule extends ReactContextBaseJavaModule {
 
 
   @ReactMethod
-  public void commitPrint(ReadableArray beansArray) {
-      List<TransBean> list = new ArrayList<>();
+public void commitPrint(ReadableArray beansArray) {
+  List<TransBean> list = new ArrayList<>();
 
-      for (int i = 0; i < beansArray.size(); i++) {
-          ReadableMap map = beansArray.getMap(i);
-          TransBean bean = new TransBean();
-          bean.setText(map.getString("text"));
-          bean.setFontSize(map.getInt("fontSize"));
-          // Aggiungi tutti i campi che servono
-          list.add(bean);
-      }
+  for (int i = 0; i < beansArray.size(); i++) {
+    ReadableMap map = beansArray.getMap(i);
+    TransBean bean = new TransBean();
 
-      printerManager.commitPrint(list.toArray(new TransBean[0]));
+    bean.setText(map.getString("text")); // Campo obbligatorio
+    // puoi aggiungere altri campi se definiti nel modello
+    list.add(bean);
   }
 
+  SunmiPrinterService.getInstance().commitPrint(list.toArray(new TransBean[0]));
+}
   /**
    * 进入事务模式
    *
