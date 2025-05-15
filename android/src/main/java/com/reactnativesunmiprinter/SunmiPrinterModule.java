@@ -487,7 +487,7 @@ public void commitPrint(ReadableArray beansArray) {
     list.add(bean);
   }
 
-  printerService.commitPrint(list.toArray(new TransBean[0]));
+  printerService.commitPrint(list.toArray(new TransBean[0]), innerResultCallback);
 }
   /**
    * 进入事务模式
