@@ -25,8 +25,8 @@ import com.sunmi.peripheral.printer.SunmiPrinterService;
 import com.sunmi.peripheral.printer.TransBean;
 import com.sunmi.peripheral.printer.WoyouConsts;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 
 @ReactModule(name = SunmiPrinterModule.NAME)
@@ -473,22 +473,6 @@ public class SunmiPrinterModule extends ReactContextBaseJavaModule {
     printerService.print2DCode(data, symbology, modulesize, errorlevel, innerResultCallback);
   }
 
-
-  @ReactMethod
-public void commitPrint(ReadableArray beansArray) throws RemoteException {
-  List<TransBean> list = new ArrayList<>();
-
-  for (int i = 0; i < beansArray.size(); i++) {
-    ReadableMap map = beansArray.getMap(i);
-    TransBean bean = new TransBean();
-
-    bean.setText(map.getString("text")); // Campo obbligatorio
-    // puoi aggiungere altri campi se definiti nel modello
-    list.add(bean);
-  }
-
-  printerService.commitPrint(list.toArray(new TransBean[0]), innerResultCallback);
-}
   /**
    * 进入事务模式
    *
